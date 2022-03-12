@@ -1,7 +1,7 @@
 # BMICalc
-Author: Tomasz Lemke s19471
-Code based on the Tipper Calc
-/*************************************************************************
+Author: Tomasz Lemke s19471 \
+Code based on the Tipper Calc \
+ **************************************************************************
  * (C) Copyright 1992-2016 by Deitel & Associates, Inc. and               *
  * Pearson Education, Inc. All Rights Reserved.                           *
  *                                                                        *
@@ -14,4 +14,4 @@ Code based on the Tipper Calc
  * and publisher shall not be liable in any event for incidental or       *
  * consequential damages in connection with, or arising out of, the       *
  * furnishing, performance, or use of these programs.                     *
- *************************************************************************/
+ **************************************************************************
