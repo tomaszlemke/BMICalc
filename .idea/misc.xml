@@ -22,6 +22,7 @@
         <entry key="zad2/src/main/res/drawable/logo2_background.xml" value="0.13" />
         <entry key="zad2/src/main/res/layout/activity_main.xml" value="0.21965579710144928" />
         <entry key="zad2/src/main/res/layout/fragment_bmi.xml" value="0.17028985507246377" />
+        <entry key="zad2/src/main/res/layout/fragment_bmr.xml" value="0.1" />
         <entry key="zad2/src/main/res/layout/fragment_dashboard.xml" value="0.21965579710144928" />
         <entry key="zad2/src/main/res/layout/fragment_home.xml" value="0.17028985507246377" />
         <entry key="zad2/src/main/res/layout/fragment_notifications.xml" value="0.13728470111448834" />

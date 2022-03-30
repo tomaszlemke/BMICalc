@@ -12,13 +12,13 @@
         android:title="@string/title_bmi" />
 
     <item
-        android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_dashboard" />
+        android:id="@+id/navigation_bmr"
+        android:icon="@drawable/ic_baseline_energy_savings_leaf_24"
+        android:title="@string/title_bmr" />
 
     <item
         android:id="@+id/navigation_notifications"
         android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_notifications" />
+        android:title="@string/title_notification" />
 
 </menu>

@@ -1,4 +1,4 @@
-package com.example.zad2.ui.dashboard;
+package com.example.zad2.ui.BMR;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

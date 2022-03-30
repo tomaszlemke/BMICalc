@@ -18,14 +18,14 @@
         tools:layout="@layout/fragment_bmi" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.zad2.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_bmr"
+        android:name="com.example.zad2.ui.BMR.BMRFragment"
+        android:label="@string/title_bmr"
+        tools:layout="@layout/fragment_bmr" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.zad2.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/title_notification"
         tools:layout="@layout/fragment_notifications" />
 </navigation>
