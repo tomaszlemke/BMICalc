@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">zad2</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_welcome">Welcome</string>
+    <string name="welcome_text">Welcome to StayFit app</string>
+    <string name="logo">logo</string>
+</resources>
