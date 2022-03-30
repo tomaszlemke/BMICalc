@@ -1,4 +1,4 @@
-package com.example.zad2.ui.home;
+package com.example.zad2.ui.BMI;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

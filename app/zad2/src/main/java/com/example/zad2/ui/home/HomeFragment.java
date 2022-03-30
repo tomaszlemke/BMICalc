@@ -1,4 +1,4 @@
-package com.example.zad2.ui.home;
+package com.example.zad2.ui.BMI;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
