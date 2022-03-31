@@ -1,5 +1,7 @@
 package com.example.zad2.ui.BMR;
 
+import android.widget.TextView;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -7,6 +9,8 @@ import androidx.lifecycle.ViewModel;
 public class BMRViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
+
+
 
     public BMRViewModel() {
         mText = new MutableLiveData<>();
