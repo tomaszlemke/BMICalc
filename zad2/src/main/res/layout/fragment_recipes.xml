@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ui.recipes.RecipesFragment">
+
+    <Button
+        android:id="@+id/breakfast"
+        android:layout_width="205dp"
+        android:layout_height="74dp"
+        android:text="@string/breakfastAndBrunch"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/snacks"
+        android:layout_width="205dp"
+        android:layout_height="74dp"
+        android:text="@string/snacks"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/mainDishes"
+        android:layout_width="205dp"
+        android:layout_height="74dp"
+        android:text="@string/mainDishes"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/quickEasy"
+        android:layout_width="205dp"
+        android:layout_height="74dp"
+        android:text="@string/quickEasy"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/desserts"
+        android:layout_width="205dp"
+        android:layout_height="74dp"
+        android:text="@string/desserts"
+        android:textSize="16sp" />
+</LinearLayout>

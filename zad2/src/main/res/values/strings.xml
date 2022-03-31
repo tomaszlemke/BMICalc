@@ -3,7 +3,7 @@
     <string name="title_bmi">BMI calc</string>
     <string name="title_bmr">BMR calc</string>
     <string name="title_welcome">Welcome</string>
-    <string name="title_notification">Notifications</string>
+    <string name="title_recipes">Przepisy</string>
     <string name="welcome_text">Welcome to StayFit app</string>
     <string name="logo">logo</string>
     <string name="enter_age">Podaj wiek</string>
@@ -13,4 +13,9 @@
     <string name="bmr">BMR</string>
     <string name="sex_male">Mężczyzna</string>
     <string name="sex_female">Kobieta</string>
+    <string name="breakfastAndBrunch">Breakfast &amp; Brunch </string>
+    <string name="desserts">Desserts</string>
+    <string name="mainDishes">Main Dishes</string>
+    <string name="snacks">Snacks &amp; Appetizers</string>
+    <string name="quickEasy">Quick &amp; Easy</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.zad2.ui.notifications;
+package com.example.zad2.ui.recipes;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

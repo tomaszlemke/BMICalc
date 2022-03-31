@@ -1,4 +1,4 @@
-package com.example.zad2.ui.notifications;
+package com.example.zad2.ui.recipes;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

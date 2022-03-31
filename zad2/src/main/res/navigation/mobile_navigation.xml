@@ -24,8 +24,8 @@
         tools:layout="@layout/fragment_bmr" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.zad2.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notification"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_recipes"
+        android:name="com.example.zad2.ui.recipes.RecipesFragment"
+        android:label="@string/title_recipes"
+        tools:layout="@layout/fragment_recipes" />
 </navigation>
