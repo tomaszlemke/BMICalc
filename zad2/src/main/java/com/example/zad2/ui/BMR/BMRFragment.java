@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,6 +32,8 @@ public class BMRFragment extends Fragment {
     private TextView heightTextView; // shows formatted height
     private TextView BMRTextView; // shows calculated BMI
     private TextView ageTextView;
+    private RadioButton maleRadioButton;
+    private RadioButton femaleRadioButton;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -45,6 +48,8 @@ public class BMRFragment extends Fragment {
         heightTextView = binding.heightTextView;
         ageTextView = binding.ageTextView;
         BMRTextView = binding.bmrTextView;
+        maleRadioButton = binding.sexMale;
+        femaleRadioButton = binding.sexFemale;
 
         EditText weightEditText = binding.weightEditText;
         weightEditText.addTextChangedListener(weightEditTextWatcher);
@@ -55,6 +60,9 @@ public class BMRFragment extends Fragment {
         EditText ageEditText = binding.ageEditText;
         ageEditText.addTextChangedListener(ageEditTextWatcher);
 
+        maleRadioButton.setOnClickListener(genderClickListener);
+        femaleRadioButton.setOnClickListener(genderClickListener);
+
         return root;
     }
 
@@ -64,14 +72,18 @@ public class BMRFragment extends Fragment {
         binding = null;
     }
     private void calculate() {
-        // calculate the BMI
-        double BMR = 66.5 + (13.75 * weight) + (5.003 * height * 100) - (6.75 * age);
+        // calculate the BMR
 
-        double BMR2 = 655.1 + (9.563 * weight) + (1.850 * height * 100) - (4.676 * age);
-
-        // display BMI formatted as number with 2 fraction digits
-        numberFormat.setMaximumFractionDigits(2);
-        BMRTextView.setText(numberFormat.format(BMR));
+        if (maleRadioButton.isChecked()){
+            double BMR = 66.5 + (13.75 * weight) + (5.003 * height * 100) - (6.75 * age);
+            numberFormat.setMaximumFractionDigits(2);
+            BMRTextView.setText(numberFormat.format(BMR));
+        }
+        if (femaleRadioButton.isChecked()){
+            double BMR = 655.1 + (9.563 * weight) + (1.850 * height * 100) - (4.676 * age);
+            numberFormat.setMaximumFractionDigits(2);
+            BMRTextView.setText(numberFormat.format(BMR));
+        }
     }
 
 
@@ -161,6 +173,10 @@ public class BMRFragment extends Fragment {
                 CharSequence s, int start, int count, int after) {
         }
 
+    };
+    private final View.OnClickListener genderClickListener = view -> {
+        boolean checked = ((RadioButton) view).isChecked();
+        if (checked) {calculate();}
     };
 
 }

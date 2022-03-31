@@ -11,4 +11,6 @@
     <string name="enter_height">Podaj wzrost w metrach</string>
     <string name="bmi">BMI</string>
     <string name="bmr">BMR</string>
+    <string name="sex_male">Mężczyzna</string>
+    <string name="sex_female">Kobieta</string>
 </resources>
