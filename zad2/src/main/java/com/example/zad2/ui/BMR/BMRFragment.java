@@ -30,10 +30,10 @@ public class BMRFragment extends Fragment {
     private int age = 0;
     private TextView weightTextView; // shows formatted weight
     private TextView heightTextView; // shows formatted height
-    private TextView BMRTextView; // shows calculated BMI
-    private TextView ageTextView;
-    private RadioButton maleRadioButton;
-    private RadioButton femaleRadioButton;
+    private TextView BMRTextView; // shows calculated BMR
+    private TextView ageTextView; // shows formatted age
+    private RadioButton maleRadioButton; // shows sex option
+    private RadioButton femaleRadioButton; // shows sex option
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class BMRFragment extends Fragment {
         binding = FragmentBmrBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-
+        // binding elements
         weightTextView = binding.weightTextView;
         heightTextView = binding.heightTextView;
         ageTextView = binding.ageTextView;
@@ -51,6 +51,7 @@ public class BMRFragment extends Fragment {
         maleRadioButton = binding.sexMale;
         femaleRadioButton = binding.sexFemale;
 
+        // setting up the watchers for input fields
         EditText weightEditText = binding.weightEditText;
         weightEditText.addTextChangedListener(weightEditTextWatcher);
 
@@ -60,6 +61,7 @@ public class BMRFragment extends Fragment {
         EditText ageEditText = binding.ageEditText;
         ageEditText.addTextChangedListener(ageEditTextWatcher);
 
+        // setting up watchers for radio buttons
         maleRadioButton.setOnClickListener(genderClickListener);
         femaleRadioButton.setOnClickListener(genderClickListener);
 
@@ -72,7 +74,7 @@ public class BMRFragment extends Fragment {
         binding = null;
     }
     private void calculate() {
-        // calculate the BMR
+        // calculate the BMR based on the radio button selected
 
         if (maleRadioButton.isChecked()){
             double BMR = 66.5 + (13.75 * weight) + (5.003 * height * 100) - (6.75 * age);
@@ -117,6 +119,7 @@ public class BMRFragment extends Fragment {
         }
     };
 
+    // listener object for the EditText's text-changed events
     private final TextWatcher heightEditTextWatcher = new TextWatcher() {
         // called when the user modifies the height
         @Override
@@ -145,7 +148,7 @@ public class BMRFragment extends Fragment {
         }
 
     };
-
+    // listener object for the EditText's text-changed events
     private final TextWatcher ageEditTextWatcher = new TextWatcher() {
         // called when the user modifies the height
         @Override
@@ -174,6 +177,7 @@ public class BMRFragment extends Fragment {
         }
 
     };
+    // listener object for the radio button-changed events
     private final View.OnClickListener genderClickListener = view -> {
         boolean checked = ((RadioButton) view).isChecked();
         if (checked) {calculate();}

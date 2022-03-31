@@ -19,6 +19,7 @@ import java.text.NumberFormat;
 
 public class BMIFragment extends Fragment {
 
+
     private static final NumberFormat numberFormat =
             NumberFormat.getNumberInstance();
 
@@ -49,8 +50,6 @@ public class BMIFragment extends Fragment {
         EditText heightEditText = binding.heightEditText;
         heightEditText.addTextChangedListener(heightEditTextWatcher);
 
-//        final TextView textView = binding.textBmi;
-//        BMIViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
@@ -89,7 +88,6 @@ public class BMIFragment extends Fragment {
             calculate(); // update the BMI TextViews
         }
 
-
         @Override
         public void afterTextChanged(Editable s) {
         }
@@ -126,8 +124,5 @@ public class BMIFragment extends Fragment {
         public void beforeTextChanged(
                 CharSequence s, int start, int count, int after) {
         }
-
     };
-
-
 }

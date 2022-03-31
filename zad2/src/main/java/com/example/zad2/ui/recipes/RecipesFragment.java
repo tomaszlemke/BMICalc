@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -27,13 +26,14 @@ public class RecipesFragment extends Fragment {
         binding = FragmentRecipesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-
+        // setting URL for the buttons
         Uri breakfastAndBrunch = Uri.parse("https://www.allrecipes.com/recipes/78/breakfast-and-brunch/");
         Uri snacks = Uri.parse("https://www.allrecipes.com/recipes/76/appetizers-and-snacks/");
         Uri mainDishes = Uri.parse("https://www.allrecipes.com/recipes/80/main-dish/");
         Uri quickEasy = Uri.parse("https://www.allrecipes.com/recipes/1947/everyday-cooking/quick-and-easy/");
         Uri desserts = Uri.parse("https://www.allrecipes.com/recipes/79/desserts/");
 
+        // binding all buttons with listeners and URL's
         final Button button = binding.breakfast;
         button.setOnClickListener(new View.OnClickListener() {
             @Override
