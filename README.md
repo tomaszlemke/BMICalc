@@ -1,16 +1,5 @@
 # BMICalc
 Author: Tomasz Lemke s19471 \
-
-
-Zad2 update:
-Simple App using navigation bar with binding fragments to the main activity. \
-App is made of:
-- Welcome fragment with simple vector logo
-- BMI calc fragment - used in the previous version of the app
-- BMR calc fragment - a bit more expanded BMI calc
-- Recipes fragment - buttons with Intent to open recipies in the web browser.
-
-
 Code based on the Tipper Calc \
  **************************************************************************
  * (C) Copyright 1992-2016 by Deitel & Associates, Inc. and               *
