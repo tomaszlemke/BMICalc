@@ -12,4 +12,6 @@
     <color name="colorAccent">#ff9100</color>
     <color name="amount_background">#BBDEFB</color>
     <color name="result_background">#FFE0B2</color>
+    <color name="dark">#1976D2</color>
+    <color name="light">#FFE100</color>
 </resources>

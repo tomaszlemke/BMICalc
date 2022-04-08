@@ -21,4 +21,9 @@
         android:icon="@drawable/ic_baseline_emoji_food_beverage_24"
         android:title="@string/title_recipes" />
 
+    <item
+        android:id="@+id/navigation_game"
+        android:icon="@drawable/ic_baseline_videogame_asset_24"
+        android:title="@string/game" />
+
 </menu>

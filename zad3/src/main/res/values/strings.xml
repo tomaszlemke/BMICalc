@@ -18,4 +18,11 @@
     <string name="mainDishes">Main Dishes</string>
     <string name="snacks">Snacks &amp; Appetizers</string>
     <string name="quickEasy">Quick &amp; Easy</string>
+
+    <string name="game">Gra</string>
+    <string name="results_format">Wystrzelono: %1$d\nCzas calkowity: %2$.1f</string>
+    <string name="reset_game">Zresetuj grę</string>
+    <string name="win">Zwycięstwo!!</string>
+    <string name="lose">Porażka!</string>
+    <string name="time_remaining_format">Pozostało czasu: %.1f sekund</string>
 </resources>

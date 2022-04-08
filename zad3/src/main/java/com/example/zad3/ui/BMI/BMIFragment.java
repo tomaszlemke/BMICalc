@@ -34,6 +34,41 @@ public class BMIFragment extends Fragment {
 
     private FragmentBmiBinding binding;
 
+    private String graph = "<html>\n" +
+            "  <head>\n" +
+            "    <script type=\"text/javascript\" src=\"https://www.gstatic.com/charts/loader.js\"></script>\n" +
+            "    <script type=\"text/javascript\">\n" +
+            "      google.charts.load('current', {'packages':['corechart']});\n" +
+            "      google.charts.setOnLoadCallback(drawChart);\n" +
+            "      function drawChart() {\n" +
+            "        var data = google.visualization.arrayToDataTable([\n" +
+            "          ['Niedowaga', 14, 14, 18.4, 18.4],\n" +
+            "          ['Prawidłowa', 18.5, 18.5, 24.9, 24.9],\n" +
+            "          ['Nadwaga', 25, 25, 29.9, 29.9],\n" +
+            "          ['Otyłość', 30, 30, 34.9, 34.9],\n" +
+            "          ['Poważna otyłość', 35, 35, 50, 50]\n" +
+            "          // Treat the first row as data.\n" +
+            "        ], true);\n" +
+            "\n" +
+            "        var options = {\n" +
+            "          legend: 'none',\n" +
+            "          bar: { groupWidth: '100%' }, // Remove space between bars.\n" +
+            "          candlestick: {\n" +
+            "            fallingColor: { strokeWidth: 0, fill: '#a52714' }, // red\n" +
+            "            risingColor: { strokeWidth: 0, fill: '#0f9d58' }   // green\n" +
+            "          }\n" +
+            "        };\n" +
+            "\n" +
+            "        var chart = new google.visualization.CandlestickChart(document.getElementById('chart_div'));\n" +
+            "        chart.draw(data, options);\n" +
+            "      }\n" +
+            "    </script>\n" +
+            "  </head>\n" +
+            "  <body>\n" +
+            "    <div id=\"chart_div\" style=\"width: 480px; height: 240px;\"></div>\n" +
+            "  </body>\n" +
+            "</html>\n";
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         BMIViewModel BMIViewModel =
@@ -46,9 +81,7 @@ public class BMIFragment extends Fragment {
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
 
-        String unencodedHtml =
-                "<html> <head> <script type=\"text/javascript\" src=\"https://www.gstatic.com/charts/loader.js\"></script> <script type=\"text/javascript\"> google.charts.load('current', {'packages':['corechart']}); google.charts.setOnLoadCallback(drawChart); function drawChart() { var data = google.visualization.arrayToDataTable([ ['Mon', 20, 28, 38, 45], ['Tue', 31, 38, 55, 66], ['Wed', 50, 55, 77, 80], ['Thu', 77, 77, 66, 50], ['Fri', 68, 66, 22, 15] // Treat first row as data as well. ], true); var options = { legend:'none' }; var chart = new google.visualization.CandlestickChart(document.getElementById('chart_div')); chart.draw(data, options); } </script> </head> <body> <div id=\"chart_div\" style=\"width: 900px; height: 500px;\"></div> </body> </html>";
-                String encodedHtml = Base64.encodeToString(unencodedHtml.getBytes(),
+         String encodedHtml = Base64.encodeToString(graph.getBytes(),
                 Base64.NO_PADDING);
         myWebView.loadData(encodedHtml, "text/html", "base64");
 
