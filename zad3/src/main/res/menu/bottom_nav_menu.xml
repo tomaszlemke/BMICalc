@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_welcome"
+        android:icon="@drawable/baseline_set_meal_black_48"
+        android:title="@string/title_welcome" />
+
+    <item
+        android:id="@+id/navigation_bmi"
+        android:icon="@drawable/ic_baseline_calculate_24"
+        android:title="@string/title_bmi" />
+
+    <item
+        android:id="@+id/navigation_bmr"
+        android:icon="@drawable/ic_baseline_energy_savings_leaf_24"
+        android:title="@string/title_bmr" />
+
+    <item
+        android:id="@+id/navigation_recipes"
+        android:icon="@drawable/ic_baseline_emoji_food_beverage_24"
+        android:title="@string/title_recipes" />
+
+</menu>
