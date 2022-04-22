@@ -53,13 +53,13 @@ public class Cannon {
                 view.getScreenHeight() / 2 - radius, radius, velocityX,
                 velocityY);
 
-        cannonball.playSound(); // play fire Cannonball sound
+       // cannonball.playSound(); // play fire Cannonball sound
     }
 
     // draws the Cannon on the Canvas
     public void draw(Canvas canvas) {
         // draw cannon barrel
-        canvas.drawLine(0, view.getScreenHeight() / 2, barrelEnd.x,
+        canvas.drawLine(0, (int)view.getScreenHeight() / 2, barrelEnd.x,
                 barrelEnd.y, paint);
 
         // draw cannon base

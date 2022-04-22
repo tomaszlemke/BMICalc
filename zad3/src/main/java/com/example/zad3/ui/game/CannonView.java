@@ -50,7 +50,7 @@ public class CannonView extends SurfaceView
     public static final double TARGET_LENGTH_PERCENT = 3.0 / 20;
     public static final double TARGET_FIRST_X_PERCENT = 3.0 / 5;
     public static final double TARGET_SPACING_PERCENT = 1.0 / 60;
-    public static final double TARGET_PIECES = 9;
+    public static final double TARGET_PIECES = 1;
     public static final double TARGET_MIN_SPEED_PERCENT = 3.0 / 4;
     public static final double TARGET_MAX_SPEED_PERCENT = 6.0 / 4;
 
@@ -61,7 +61,7 @@ public class CannonView extends SurfaceView
     public static final double BLOCKER_SPEED_PERCENT = 1.0;
 
     // text size 1/18 of screen width
-    public static final double TEXT_SIZE_PERCENT = 1.0 / 18;
+    public static final double TEXT_SIZE_PERCENT = 1.0 / 20;
 
     private CannonThread cannonThread; // controls the game loop
     private Activity activity; // to display Game Over dialog in GUI thread
@@ -79,8 +79,8 @@ public class CannonView extends SurfaceView
     // variables for the game loop and tracking statistics
     private boolean gameOver; // is the game over?
     private double timeLeft; // time remaining in seconds
-    private int shotsFired; // shots the user has fired
-    private double totalElapsedTime; // elapsed seconds
+    public int shotsFired; // shots the user has fired
+    public double totalElapsedTime; // elapsed seconds
 
     // constants and variables for managing sounds
     public static final int TARGET_SOUND_ID = 0;
@@ -112,13 +112,13 @@ public class CannonView extends SurfaceView
         soundPool = builder.build();
 
         // create Map of sounds and pre-load sounds
-        soundMap = new SparseIntArray(3); // create new SparseIntArray
-        soundMap.put(TARGET_SOUND_ID,
-                soundPool.load(context, R.raw.target_hit, 1));
-        soundMap.put(CANNON_SOUND_ID,
-                soundPool.load(context, R.raw.cannon_fire, 1));
-        soundMap.put(BLOCKER_SOUND_ID,
-                soundPool.load(context, R.raw.blocker_hit, 1));
+//        soundMap = new SparseIntArray(3); // create new SparseIntArray
+//        soundMap.put(TARGET_SOUND_ID,
+//                soundPool.load(context, R.raw.target_hit, 1));
+//        soundMap.put(CANNON_SOUND_ID,
+//                soundPool.load(context, R.raw.cannon_fire, 1));
+//        soundMap.put(BLOCKER_SOUND_ID,
+//                soundPool.load(context, R.raw.blocker_hit, 1));
 
         textPaint = new Paint();
         backgroundPaint = new Paint();
@@ -150,12 +150,14 @@ public class CannonView extends SurfaceView
     }
 
     // plays a sound with the given soundId in soundMap
-    public void playSound(int soundId) {
-        soundPool.play(soundMap.get(soundId), 1, 1, 1, 0, 1f);
-    }
+//    public void playSound(int soundId) {
+//        soundPool.play(soundMap.get(soundId), 1, 1, 1, 0, 1f);
+//    }
 
     // reset all the screen elements and start a new game
     public void newGame() {
+
+
         // construct a new Cannon
         cannon = new Cannon(this,
                 (int) (CANNON_BASE_RADIUS_PERCENT * screenHeight),
@@ -244,13 +246,13 @@ public class CannonView extends SurfaceView
             timeLeft = 0.0;
             gameOver = true; // the game is over
             cannonThread.setRunning(false); // terminate thread
-            showGameOverDialog(R.string.lose); // show the losing dialog
+//            showGameOverDialog(R.string.lose); // show the losing dialog
         }
 
         // if all pieces have been hit
         if (targets.isEmpty()) {
             cannonThread.setRunning(false); // terminate thread
-            showGameOverDialog(R.string.win); // show winning dialog
+//            showGameOverDialog(R.string.win); // show winning dialog
             gameOver = true;
         }
     }
@@ -283,49 +285,48 @@ public class CannonView extends SurfaceView
     }
 
     // display an AlertDialog when the game ends
-    private void showGameOverDialog(final int messageId) {
-        // DialogFragment to display game stats and start new game
-        final DialogFragment gameResult =
-                new DialogFragment() {
-                    // create an AlertDialog and return it
-                    @Override
-                    public Dialog onCreateDialog(Bundle bundle) {
-                        // create dialog displaying String resource for messageId
-                        AlertDialog.Builder builder =
-                                new AlertDialog.Builder(getActivity());
-                        builder.setTitle(getResources().getString(messageId));
-
-                        // display number of shots fired and total time elapsed
-                        builder.setMessage(getResources().getString(
-                                R.string.results_format, shotsFired, totalElapsedTime));
-                        builder.setPositiveButton(R.string.reset_game,
-                                new DialogInterface.OnClickListener() {
-                                    // called when "Reset Game" Button is pressed
-                                    @Override
-                                    public void onClick(DialogInterface dialog,
-                                                        int which) {
-                                        dialogIsDisplayed = false;
-                                        newGame(); // set up and start a new game
-                                    }
-                                }
-                        );
-
-                        return builder.create(); // return the AlertDialog
-                    }
-                };
-
-        // in GUI thread, use FragmentManager to display the DialogFragment
-        activity.runOnUiThread(
-                new Runnable() {
-                    public void run() {
-                        showSystemBars();
-                        dialogIsDisplayed = true;
-                        gameResult.setCancelable(false); // modal dialog
-                        gameResult.show(activity.getFragmentManager(), "results");
-                    }
-                }
-        );
-    }
+//    private void showGameOverDialog(final int messageId) {
+//        // DialogFragment to display game stats and start new game
+//        final DialogFragment gameResult = new DialogFragment() {
+//            // create an AlertDialog and return it
+//            @Override
+//            public Dialog onCreateDialog(Bundle bundle) {
+//                // create dialog displaying String resource for messageId
+//                AlertDialog.Builder builder =
+//                        new AlertDialog.Builder(getActivity());
+//                builder.setTitle(getResources().getString(messageId));
+//
+//                // display number of shots fired and total time elapsed
+//                builder.setMessage(getResources().getString(
+//                        R.string.results_format, shotsFired, totalElapsedTime));
+//                builder.setPositiveButton(R.string.reset_game,
+//                        new DialogInterface.OnClickListener() {
+//                            // called when "Reset Game" Button is pressed
+//                            @Override
+//                            public void onClick(DialogInterface dialog,
+//                                                int which) {
+//                                dialogIsDisplayed = false;
+//                                newGame(); // set up and start a new game
+//                            }
+//                        }
+//                );
+//
+//                return builder.create(); // return the AlertDialog
+//            }
+//        };
+//
+//        // in GUI thread, use FragmentManager to display the DialogFragment
+//        activity.runOnUiThread(
+//                new Runnable() {
+//                    public void run() {
+//                        showSystemBars();
+//                        dialogIsDisplayed = true;
+//                        gameResult.setCancelable(false); // modal dialog
+//                        gameResult.show(activity.getFragmentManager(), "results");
+//                    }
+//                }
+//        );
+//    }
 
     // draws the game to the given Canvas
     public void drawGameElements(Canvas canvas) {
@@ -360,7 +361,7 @@ public class CannonView extends SurfaceView
                 cannon.getCannonball().isOnScreen()) {
             for (int n = 0; n < targets.size(); n++) {
                 if (cannon.getCannonball().collidesWith(targets.get(n))) {
-                    targets.get(n).playSound(); // play Target hit sound
+//                    targets.get(n).playSound(); // play Target hit sound
 
                     // add hit rewards time to remaining time
                     timeLeft += targets.get(n).getHitReward();
@@ -379,7 +380,7 @@ public class CannonView extends SurfaceView
         // check if ball collides with blocker
         if (cannon.getCannonball() != null &&
                 cannon.getCannonball().collidesWith(blocker)) {
-            blocker.playSound(); // play Blocker hit sound
+//            blocker.playSound(); // play Blocker hit sound
 
             // reverse ball direction
             cannon.getCannonball().reverseVelocityX();

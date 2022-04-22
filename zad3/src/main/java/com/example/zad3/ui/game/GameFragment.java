@@ -25,24 +25,24 @@ public class GameFragment extends Fragment {
         binding = FragmentGameBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        // inflate the fragment_main.xml layout
         View view =
                 inflater.inflate(R.layout.fragment_game, container, false);
-
         getActivity().setVolumeControlStream(AudioManager.STREAM_MUSIC);
         // get a reference to the CannonView
         cannonView = (CannonView) view.findViewById(R.id.cannonView);
+        getActivity().setVolumeControlStream(AudioManager.STREAM_MUSIC);
+
         return view;
     }
 
     // set up volume control once Activity is created
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        // allow volume buttons to set game volume
-        getActivity().setVolumeControlStream(AudioManager.STREAM_MUSIC);
-    }
+//    @Override
+//    public void onActivityCreated(Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//
+//        // allow volume buttons to set game volume
+//        getActivity().setVolumeControlStream(AudioManager.STREAM_MUSIC);
+//    }
 
     // when MainActivity is paused, terminate the game
     @Override
