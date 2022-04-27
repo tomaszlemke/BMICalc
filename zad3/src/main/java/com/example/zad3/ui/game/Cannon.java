@@ -63,7 +63,7 @@ public class Cannon {
                 barrelEnd.y, paint);
 
         // draw cannon base
-        canvas.drawCircle(0, (int) view.getScreenHeight() / 2,
+        canvas.drawCircle(0,  view.getScreenHeight() / 2,
                 (int) baseRadius, paint);
     }
 

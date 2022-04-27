@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_welcome">
+
+    <fragment
+        android:id="@+id/navigation_welcome"
+        android:name="com.example.zad4.ui.welcome.WelcomeFragment"
+        android:label="@string/title_welcome"
+        tools:layout="@layout/fragment_welcome" />
+
+    <fragment
+        android:id="@+id/navigation_bmi"
+        android:name="com.example.zad4.ui.BMI.BMIFragment"
+        android:label="@string/title_bmi"
+        tools:layout="@layout/fragment_bmi" />
+
+    <fragment
+        android:id="@+id/navigation_bmr"
+        android:name="com.example.zad4.ui.BMR.BMRFragment"
+        android:label="@string/title_bmr"
+        tools:layout="@layout/fragment_bmr" />
+
+    <fragment
+        android:id="@+id/navigation_recipes"
+        android:name="com.example.zad4.ui.recipes.RecipesFragment"
+        android:label="@string/title_recipes"
+        tools:layout="@layout/fragment_recipes" />
+
+    <fragment
+        android:id="@+id/navigation_game"
+        android:name="com.example.zad4.ui.game.GameFragment"
+        android:label="@string/game"
+        tools:layout="@layout/fragment_game" />
+
+</navigation>

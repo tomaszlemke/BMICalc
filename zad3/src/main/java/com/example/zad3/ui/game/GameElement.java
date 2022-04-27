@@ -12,17 +12,17 @@ public class GameElement {
     protected CannonView view; // the view that contains this GameElement
     protected Paint paint = new Paint(); // Paint to draw this GameElement
     protected Rect shape; // the GameElement's rectangular bounds
-    protected ShapeDrawable shape2;
+
     private float velocityY; // the vertical velocity of this GameElement
-    private int soundId; // the sound associated with this GameElement
+   // private int soundId; // the sound associated with this GameElement
 
     // public constructor
     public GameElement(CannonView view, int color, int soundId, int x,
                        int y, int width, int length, float velocityY) {
         this.view = view;
-        paint.setColor(color);
+       // shape2 = new
         shape = new Rect(x, y, x + width, y + length); // set bounds
-        this.soundId = soundId;
+       // this.soundId = soundId;
         this.velocityY = velocityY;
     }
 

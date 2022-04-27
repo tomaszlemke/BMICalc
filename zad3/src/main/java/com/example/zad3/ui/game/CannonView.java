@@ -102,13 +102,13 @@ public class CannonView extends SurfaceView
         getHolder().addCallback(this);
 
         // configure audio attributes for game audio
-        AudioAttributes.Builder attrBuilder = new AudioAttributes.Builder();
-        attrBuilder.setUsage(AudioAttributes.USAGE_GAME);
+//        AudioAttributes.Builder attrBuilder = new AudioAttributes.Builder();
+//        attrBuilder.setUsage(AudioAttributes.USAGE_GAME);
 
         // initialize SoundPool to play the app's three sound effects
         SoundPool.Builder builder = new SoundPool.Builder();
         builder.setMaxStreams(1);
-        builder.setAudioAttributes(attrBuilder.build());
+//        builder.setAudioAttributes(attrBuilder.build());
         soundPool = builder.build();
 
         // create Map of sounds and pre-load sounds
