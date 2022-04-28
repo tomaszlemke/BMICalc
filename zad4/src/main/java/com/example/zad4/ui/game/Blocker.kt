@@ -12,6 +12,6 @@ class Blocker     // constructor
     length: Int,
     velocityY: Float
 ) : com.example.zad4.ui.game.GameElement(
-    view!!, color, com.example.zad4.ui.game.CannonView.BLOCKER_SOUND_ID, x, y, width, length,
+    view!!, color, x, y, width, length,
     velocityY
 )

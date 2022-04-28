@@ -1,6 +1,10 @@
 package com.example.zad4.ui.game
 
+import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlertDialog
+import android.app.Dialog
+import android.app.DialogFragment
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
@@ -8,6 +12,7 @@ import android.graphics.Paint
 import android.graphics.Point
 import android.media.SoundPool
 import android.os.Build
+import android.os.Bundle
 import android.util.AttributeSet
 import android.util.Log
 import android.util.SparseIntArray
@@ -23,12 +28,12 @@ class CannonView(context: Context?, attrs: AttributeSet?) :
             : CannonThread? = null
     private val activity // to display Game Over dialog in GUI thread
             : Activity?
-    private val dialogIsDisplayed = false
+    private var dialogIsDisplayed = false
 
     // game objects
     private var cannon: Cannon? = null
-    private var blocker: com.example.zad4.ui.game.Blocker? = null
-    private var targets: ArrayList<com.example.zad4.ui.game.Target>? = null
+    private var blocker: Blocker? = null
+    private var targets: ArrayList<Target>? = null
 
     // get width of the game screen
     // dimension variables
@@ -87,7 +92,7 @@ class CannonView(context: Context?, attrs: AttributeSet?) :
             (CANNON_BARREL_WIDTH_PERCENT * screenHeight).toInt()
         )
         val random = Random() // for determining random velocities
-        targets = ArrayList<com.example.zad4.ui.game.Target>() // construct a new Target list
+        targets = ArrayList<Target>() // construct a new Target list
 
         // initialize targetX for the first Target from the left
         var targetX = (TARGET_FIRST_X_PERCENT * screenWidth).toInt()
@@ -119,7 +124,7 @@ class CannonView(context: Context?, attrs: AttributeSet?) :
 
             // create and add a new Target to the Target list
             targets!!.add(
-                com.example.zad4.ui.game.Target(
+                Target(
                     this, color, HIT_REWARD, targetX, targetY,
                     (TARGET_WIDTH_PERCENT * screenWidth).toInt(),
                     (TARGET_LENGTH_PERCENT * screenHeight).toInt(),
@@ -135,7 +140,7 @@ class CannonView(context: Context?, attrs: AttributeSet?) :
         }
 
         // create a new Blocker
-        blocker = com.example.zad4.ui.game.Blocker(
+        blocker = Blocker(
             this, Color.BLACK, MISS_PENALTY,
             (BLOCKER_X_PERCENT * screenWidth).toInt(),
             ((0.5 - BLOCKER_LENGTH_PERCENT / 2) * screenHeight).toInt(),
@@ -209,49 +214,45 @@ class CannonView(context: Context?, attrs: AttributeSet?) :
         }
     }
 
-    // display an AlertDialog when the game ends
-    //    private void showGameOverDialog(final int messageId) {
-    //        // DialogFragment to display game stats and start new game
-    //        final DialogFragment gameResult = new DialogFragment() {
-    //            // create an AlertDialog and return it
-    //            @Override
-    //            public Dialog onCreateDialog(Bundle bundle) {
-    //                // create dialog displaying String resource for messageId
-    //                AlertDialog.Builder builder =
-    //                        new AlertDialog.Builder(getActivity());
-    //                builder.setTitle(getResources().getString(messageId));
-    //
-    //                // display number of shots fired and total time elapsed
-    //                builder.setMessage(getResources().getString(
-    //                        R.string.results_format, shotsFired, totalElapsedTime));
-    //                builder.setPositiveButton(R.string.reset_game,
-    //                        new DialogInterface.OnClickListener() {
-    //                            // called when "Reset Game" Button is pressed
-    //                            @Override
-    //                            public void onClick(DialogInterface dialog,
-    //                                                int which) {
-    //                                dialogIsDisplayed = false;
-    //                                newGame(); // set up and start a new game
-    //                            }
-    //                        }
-    //                );
-    //
-    //                return builder.create(); // return the AlertDialog
-    //            }
-    //        };
-    //
-    //        // in GUI thread, use FragmentManager to display the DialogFragment
-    //        activity.runOnUiThread(
-    //                new Runnable() {
-    //                    public void run() {
-    //                        showSystemBars();
-    //                        dialogIsDisplayed = true;
-    //                        gameResult.setCancelable(false); // modal dialog
-    //                        gameResult.show(activity.getFragmentManager(), "results");
-    //                    }
-    //                }
-    //        );
-    //    }
+    private fun showGameOverDialog(messageId: Int) {
+        // DialogFragment to display game stats and start new game
+        val gameResult: DialogFragment = DialogFragment1(messageId)
+
+        // in GUI thread, use FragmentManager to display the DialogFragment
+        activity!!.runOnUiThread {
+            showSystemBars()
+            dialogIsDisplayed = true
+            gameResult.isCancelable = false // modal dialog
+            gameResult.show(activity.fragmentManager, "results")
+        }
+    }
+
+    @SuppressLint("ValidFragment")
+    inner class DialogFragment1(private val messageId: Int) : DialogFragment() {
+        // create an AlertDialog and return it
+        override fun onCreateDialog(bundle: Bundle): Dialog {
+            // create dialog displaying String resource for messageId
+            val builder = AlertDialog.Builder(activity)
+            builder.setTitle(resources.getString(messageId))
+
+            // display number of shots fired and total time elapsed
+            builder.setMessage(
+                resources.getString(
+                    R.string.results_format, shotsFired, totalElapsedTime
+                )
+            )
+            builder.setPositiveButton(
+                R.string.reset_game
+            ) { dialog, which ->
+
+                // called when "Reset Game" Button is pressed
+                dialogIsDisplayed = false
+                newGame() // set up and start a new game
+            }
+            return builder.create() // return the AlertDialog
+        }
+    }
+
     // draws the game to the given Canvas
     fun drawGameElements(canvas: Canvas?) {
         // clear the background
@@ -289,7 +290,6 @@ class CannonView(context: Context?, attrs: AttributeSet?) :
             var n = 0
             while (n < targets!!.size) {
                 if (cannon!!.getCannonball()!!.collidesWith(targets!![n])) {
-//                    targets.get(n).playSound(); // play Target hit sound
 
                     // add hit rewards time to remaining time
                     timeLeft += targets!![n].hitReward.toDouble()
@@ -308,7 +308,6 @@ class CannonView(context: Context?, attrs: AttributeSet?) :
         if (cannon!!.getCannonball() != null &&
             cannon!!.getCannonball()!!.collidesWith(blocker!!)
         ) {
-//            blocker.playSound(); // play Blocker hit sound
 
             // reverse ball direction
             cannon!!.getCannonball()!!.reverseVelocityX()
@@ -461,7 +460,7 @@ class CannonView(context: Context?, attrs: AttributeSet?) :
         const val TARGET_LENGTH_PERCENT = 3.0 / 20
         const val TARGET_FIRST_X_PERCENT = 3.0 / 5
         const val TARGET_SPACING_PERCENT = 1.0 / 60
-        const val TARGET_PIECES = 1.0
+        const val TARGET_PIECES = 5.0
         const val TARGET_MIN_SPEED_PERCENT = 3.0 / 4
         const val TARGET_MAX_SPEED_PERCENT = 6.0 / 4
 
@@ -487,9 +486,6 @@ class CannonView(context: Context?, attrs: AttributeSet?) :
         // register SurfaceHolder.Callback listener
         holder.addCallback(this)
 
-        // configure audio attributes for game audio
-//        AudioAttributes.Builder attrBuilder = new AudioAttributes.Builder();
-//        attrBuilder.setUsage(AudioAttributes.USAGE_GAME);
 
         // initialize SoundPool to play the app's three sound effects
         val builder = SoundPool.Builder()
@@ -497,14 +493,6 @@ class CannonView(context: Context?, attrs: AttributeSet?) :
         //        builder.setAudioAttributes(attrBuilder.build());
         soundPool = builder.build()
 
-        // create Map of sounds and pre-load sounds
-//        soundMap = new SparseIntArray(3); // create new SparseIntArray
-//        soundMap.put(TARGET_SOUND_ID,
-//                soundPool.load(context, R.raw.target_hit, 1));
-//        soundMap.put(CANNON_SOUND_ID,
-//                soundPool.load(context, R.raw.cannon_fire, 1));
-//        soundMap.put(BLOCKER_SOUND_ID,
-//                soundPool.load(context, R.raw.blocker_hit, 1));
         textPaint = Paint()
         backgroundPaint = Paint()
         backgroundPaint.color = Color.WHITE

@@ -5,11 +5,10 @@ import android.graphics.Paint
 import android.graphics.Rect
 
 open class GameElement(
-    view: com.example.zad4.ui.game.CannonView, color: Int, soundId: Int, x: Int,
+    view: CannonView, color: Int, x: Int,
     y: Int, width: Int, length: Int, velocityY: Float
 ) {
-    protected var view // the view that contains this GameElement
-            : com.example.zad4.ui.game.CannonView
+    protected var view : CannonView = view
     protected var paint = Paint() // Paint to draw this GameElement
     var shape // the GameElement's rectangular bounds
             : Rect
@@ -30,18 +29,12 @@ open class GameElement(
     // draws this GameElement on the given Canvas
     open fun draw(canvas: Canvas) {
         canvas.drawRect(shape, paint)
-    } // plays the sound that corresponds to this type of GameElement
+    }
 
-    //    public void playSound() {
-    //        view.playSound(soundId);
-    //    }
-    // private int soundId; // the sound associated with this GameElement
     // public constructor
     init {
-        this.view = view
         // shape2 = new
         shape = Rect(x, y, x + width, y + length) // set bounds
-        // this.soundId = soundId;
         this.velocityY = velocityY
     }
 }

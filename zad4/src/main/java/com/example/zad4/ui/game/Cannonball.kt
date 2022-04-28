@@ -5,11 +5,11 @@ import android.graphics.Rect
 
 class Cannonball     // constructor
     (
-    view: com.example.zad4.ui.game.CannonView?, color: Int, soundId: Int, x: Int,
+    view: CannonView?, color: Int, x: Int,
     y: Int, radius: Int, private var velocityX: Float, velocityY: Float
 ) :
     GameElement(
-        view!!, color, soundId, x, y,
+        view!!, color, x, y,
         2 * radius, 2 * radius, velocityY
     ) {
     // returns true if this Cannonball is on the screen
