@@ -23,11 +23,11 @@ class WelcomeFragment : Fragment() {
         val root: View = binding!!.getRoot()
         val textView: TextView = binding!!.textWelcome
 
-//        welcomeViewModel.getText().observe(
-//            viewLifecycleOwner,
-//            Observer { text: String? ->
-//                textView.text = text
-//            })
+        welcomeViewModel.text.observe(
+            viewLifecycleOwner,
+            Observer { text: String? ->
+                textView.text = text
+            })
         return root
     }
 

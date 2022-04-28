@@ -23,7 +23,8 @@ class MainActivity : AppCompatActivity() {
             R.id.navigation_bmi,
             R.id.navigation_bmr,
             R.id.navigation_recipes,
-            R.id.navigation_welcome
+            R.id.navigation_welcome,
+            R.id.navigation_game
         )
             .build()
         val navController = findNavController(this, R.id.nav_host_fragment_activity_main)
